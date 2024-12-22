@@ -58,17 +58,62 @@ app.get('/fetchReviews/dealer/:id', async (req, res) => {
 
 // Express route to fetch all dealerships
 app.get('/fetchDealers', async (req, res) => {
-//Write your code here
+    try {
+        const dealers = await Dealerships.find();
+        res.json(dealers);
+    } catch (error) {
+        res.status(500).json({ error: 'Error fetching dealerships' });
+    }
 });
-
+  
 // Express route to fetch Dealers by a particular state
 app.get('/fetchDealers/:state', async (req, res) => {
-//Write your code here
-});
+    try {
+        const dealers = await Dealerships.find({ state: req.params.state });
+        res.json(dealers);
+    } catch (error) {
+        res.status(500).json({ error: 'Error fetching dealerships by state' });
+    }
+});  
 
-// Express route to fetch dealer by a particular id
+// // Express route to fetch dealer by a particular id
+// app.get('/fetchDealer/:id', async (req, res) => {
+//     try {
+//         const dealer = await Dealerships.find(req.params.id);
+//         res.json(dealer);
+//     } catch (error) {
+//         res.status(500).json({ error: 'Error fetching dealership by ID' });
+//     }
+// });  
+
+// // Express route to fetch dealer by a particular id using a string ID
+// app.get('/fetchDealer/:id', async (req, res) => {
+//     try {
+//         const dealer = await Dealerships.findOne({ _id: req.params.id });
+//         if (!dealer) {
+//             return res.status(404).json({ error: 'Dealership not found' });
+//         }
+//         res.json(dealer);
+//     } catch (error) {
+//         console.log(error); // Log the error to see more details
+//         res.status(500).json({ error: 'Error fetching dealership by ID', details: error.message });
+//     }
+// });  
+
+// Express route to fetch dealer by a particular id converting string to ObjectId
 app.get('/fetchDealer/:id', async (req, res) => {
-//Write your code here
+    try {
+
+        const id = new mongoose.Types.ObjectId(req.params.id);  // Correctly using 'new' with ObjectId
+        const dealer = await Dealerships.findById(id);
+        if (!dealer) {
+            return res.status(404).json({ error: 'Dealership not found' });
+        }
+        res.json(dealer);
+    } catch (error) {
+        console.log(error); // Log the error to see more details
+        res.status(500).json({ error: 'Error fetching dealership by ID', details: error.message });
+    }
 });
 
 //Express route to insert review
