@@ -6,8 +6,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Car Make Model
 class CarMake(models.Model):
-    name = models.CharField
-    (
+    name = models.CharField(
         max_length=100, 
         help_text="Enter the car make (e.g., Toyota, Ford)"
     )
