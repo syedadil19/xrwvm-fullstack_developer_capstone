@@ -2,6 +2,8 @@
 from django.db import models
 from django.contrib import admin
 from django.core.validators import MaxValueValidator, MinValueValidator
+# from django.utils.timezone import now
+
 
 # Car Make Model
 class CarMake(models.Model):
@@ -15,6 +17,7 @@ class CarMake(models.Model):
 
     def __str__(self):
         return self.name
+
 
 # Car Model
 class CarModel(models.Model):
@@ -42,6 +45,7 @@ class CarModel(models.Model):
 
     def __str__(self):
         return f"{self.car_make.name} {self.name}"
+
 
 # Register models with admin
 admin.site.register(CarMake)
