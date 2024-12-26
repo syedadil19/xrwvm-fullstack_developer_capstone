@@ -1,13 +1,18 @@
+import os
+from pathlib import Path
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 # New URL setup
 ALLOWED_HOSTS = [
     'localhost',
-    'https://syedmohamada-8000.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai'
+    ('https://syedmohamada-8000.theiadockernext-0-labs-prod-theiak8s-4-' 
+     'tor01.proxy.cognitiveclass.ai')
 ]
 CSRF_TRUSTED_ORIGINS = [
-    'https://syedmohamada-8000.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai'
+    ('https://syedmohamada-8000.theiadockernext-0-labs-prod-theiak8s-4-'
+     'tor01.proxy.cognitiveclass.ai')
 ]
 
 # Application definition
